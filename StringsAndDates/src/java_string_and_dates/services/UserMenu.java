@@ -32,7 +32,7 @@ public class UserMenu {
             switch (verifyOption) {
                 case HELP -> helpOptionMenu();
                 case REPORT -> financialAccounting.reportOption();
-                case EXIT -> System.out.println("Была введена команда EXIT");
+                case EXIT -> financialAccounting.exitOption();
             }
         }
     }

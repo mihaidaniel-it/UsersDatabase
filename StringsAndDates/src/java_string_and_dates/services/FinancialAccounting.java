@@ -9,10 +9,17 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class FinancialAccounting {
+//    Объекты
     Scanner scanner = new Scanner(System.in);
+    StringBuilder stringBuilder = new StringBuilder();
 
-    Transaction[] lastFiveUserTransactions = new Transaction[5];
-    int currentTransactionInRow = 0;
+//    Поля
+    private static Transaction[] lastFiveUserTransactions = new Transaction[5];
+    private static int currentTransactionInRow = 0;
+    private static int wasAddedTransactions = 0;
+    private static double totalIncome = 0;
+    private static double totalExpenses = 0;
+    private static double balance = 0;
 
 //    Методы
     public String toLowerUpperCase(String description) {
@@ -58,8 +65,7 @@ public class FinancialAccounting {
         String formatedDate = today.format(dateFormat);
 
 //        Объект с новой транзакцией
-        Transaction newTransaction = new Transaction(
-                transactionDescriptionFormatted,
+        Transaction newTransaction = new Transaction(transactionDescriptionFormatted,
                 transactionValue,
                 transactionTypeUpperCase,
                 formatedDate);
@@ -68,6 +74,40 @@ public class FinancialAccounting {
         if (currentTransactionInRow < 5) {
             lastFiveUserTransactions[currentTransactionInRow] = newTransaction;
             currentTransactionInRow++;
+            wasAddedTransactions++;
+
+//            Операции со счетом
+            if (TransactionType.INCOME == transactionTypeUpperCase) {
+                totalIncome += transactionValue;
+            } else if (TransactionType.EXPENSES == transactionTypeUpperCase) {
+                totalExpenses += transactionValue;
+            }
+
+//            Вывод транзакции
+            System.out.println("Добавлена новая транзакция!");
+
+            String addTransactionText = "%s; %.2f; %s; %s";
+            System.out.println(String.format(
+                    addTransactionText,
+                    transactionDescriptionFormatted,
+                    transactionValue,
+                    transactionTypeUpperCase,
+                    formatedDate));
+
+            System.out.println(" ");
+
+            UserMenu.selectMenuOption();
+        } else if (currentTransactionInRow == 5) {
+            currentTransactionInRow = 0;
+            lastFiveUserTransactions[currentTransactionInRow] = newTransaction;
+            wasAddedTransactions++;
+
+//            Операции со счетом
+            if (TransactionType.INCOME == transactionTypeUpperCase) {
+                totalIncome += transactionValue;
+            } else if (TransactionType.EXPENSES == transactionTypeUpperCase) {
+                totalExpenses += transactionValue;
+            }
 
 //            Вывод транзакции
             System.out.println("Добавлена новая транзакция!");
@@ -82,22 +122,43 @@ public class FinancialAccounting {
 
             System.out.println(" ");
             UserMenu.selectMenuOption();
-        } else if (currentTransactionInRow == 5) {
-            currentTransactionInRow = 0;
-            lastFiveUserTransactions[currentTransactionInRow] = newTransaction;
+        }
+    }
 
-//            Вывод транзакции
-            System.out.println("Добавлена новая транзакция!");
+    public void reportOption() {
+        balance = totalIncome - totalExpenses;
 
-            String addTransactionText = "%s; %.2f; %s; %s";
-            System.out.println(String.format(
-                    addTransactionText,
-                    transactionDescriptionFormatted,
-                    transactionValue,
-                    transactionTypeUpperCase,
-                    formatedDate));
+//        Вывод данных по счету
+        System.out.println("Отчет по финансам:");
+        System.out.println("Общий доход: " + totalIncome);
+        System.out.println("Общие расходы: " + totalExpenses);
+        System.out.println(String.format("Баланс: %.2f", balance));
 
-            System.out.println(" ");
+//        Вывод транзакций
+        System.out.println("Последние транзакции:");
+
+        if (wasAddedTransactions > 0) {
+            stringBuilder.append(String.format("%-15s %-10s %-10s %-20s%n", "Дата", "Сумма", "Тип", "Описание"));
+            stringBuilder.append("------------------------------------------------------------------\n");
+
+            for (int i = 0; i < lastFiveUserTransactions.length; i++) {
+                if (lastFiveUserTransactions[i] != null) {
+                    stringBuilder.append(String.format(
+                            "%-15s %-10.2f %-10s %-20s%n",
+                            lastFiveUserTransactions[i].transactionDate(),
+                            lastFiveUserTransactions[i].transactionValue(),
+                            lastFiveUserTransactions[i].transactionType(),
+                            lastFiveUserTransactions[i].transactionDescription()
+                    ));
+                }
+            }
+
+            String result = stringBuilder.toString();
+            System.out.print(result);
+
+            UserMenu.selectMenuOption();
+        } else if (wasAddedTransactions == 0){
+            System.out.printf("Вы еще не совершали транзакций");
             UserMenu.selectMenuOption();
         }
     }

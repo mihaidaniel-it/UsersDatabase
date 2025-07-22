@@ -31,7 +31,7 @@ public class UserMenu {
         } else {
             switch (verifyOption) {
                 case HELP -> helpOptionMenu();
-                case REPORT -> System.out.println("Была введена команда REPORT");
+                case REPORT -> financialAccounting.reportOption();
                 case EXIT -> System.out.println("Была введена команда EXIT");
             }
         }

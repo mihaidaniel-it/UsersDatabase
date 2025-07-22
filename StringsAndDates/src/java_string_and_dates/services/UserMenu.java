@@ -9,6 +9,7 @@ public class UserMenu {
 //    Методы
     public static void selectMenuOption() {
 //        Создание объекта
+        FinancialAccounting financialAccounting = new FinancialAccounting();
         Scanner scanner = new Scanner(System.in);
 
 //        Получение данных
@@ -19,7 +20,7 @@ public class UserMenu {
        UserOption verifyOption = UserOption.checkUserOption(selectedOption);
 
         if (verifyOption == null) {
-            System.out.println("Добавлениен новой транзакции");
+            financialAccounting.addTransaction();
         } else {
             switch (verifyOption) {
                 case HELP -> System.out.println("Была введена команда HELP");

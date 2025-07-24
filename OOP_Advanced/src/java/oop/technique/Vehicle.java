@@ -53,9 +53,27 @@ public abstract class Vehicle implements Acceleration, Breakable, Cargo, Refuell
         }
     }
 
+    @Override
     public void refuel() {
         if (tankVolume > 45) {
             acceleration();
         }
+    }
+
+//    Геттеры
+    public int getX() {
+        return x;
+    }
+
+    public int getAverageSpeed() {
+        return averageSpeed;
+    }
+
+    public double getVehicleCondition() {
+        return vehicleCondition;
+    }
+
+    public int getTankVolume() {
+        return tankVolume;
     }
 }

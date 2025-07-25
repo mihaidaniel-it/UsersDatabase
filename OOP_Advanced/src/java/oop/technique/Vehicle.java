@@ -9,13 +9,13 @@ public abstract class Vehicle implements Acceleration, Breakable, Cargo, Refuell
 //    Поля
     private String model;
     private double vehicleCondition = Math.random() * 100;
-    private double vehicleWeight;
+    private int vehicleWeight;
     private int averageSpeed;
     private int tankVolume;
     private int x = 0;
 
 //    Конструктор
-    public Vehicle(String model, double vehicleWeight, int averageSpeed, int tankVolume) {
+    public Vehicle(String model, int vehicleWeight, int averageSpeed, int tankVolume) {
         this.model = model;
         this.vehicleWeight = vehicleWeight;
         this.averageSpeed = averageSpeed;
@@ -25,6 +25,16 @@ public abstract class Vehicle implements Acceleration, Breakable, Cargo, Refuell
 //    Методы
     public void move() {
         this.x += averageSpeed;
+
+        if (!isBroken()) {
+            acceleration();
+        }
+        if (!isCargo()) {
+           acceleration();
+        }
+        if (!refuel()) {
+            acceleration();
+        }
     }
 
     @Override
@@ -37,7 +47,6 @@ public abstract class Vehicle implements Acceleration, Breakable, Cargo, Refuell
         if (vehicleCondition < 45) {
             return true;
         } else {
-            System.out.println("Ваша машина сломалась. Гонка завершена!");
             return false;
         }
     }
@@ -45,18 +54,18 @@ public abstract class Vehicle implements Acceleration, Breakable, Cargo, Refuell
     @Override
     public boolean isCargo() {
         if (vehicleWeight < 2500) {
-            averageSpeed += 5;
             return false;
         } else {
-            averageSpeed -= 5;
             return true;
         }
     }
 
     @Override
-    public void refuel() {
+    public boolean refuel() {
         if (tankVolume > 45) {
-            acceleration();
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -75,5 +84,9 @@ public abstract class Vehicle implements Acceleration, Breakable, Cargo, Refuell
 
     public int getTankVolume() {
         return tankVolume;
+    }
+
+    public int getVehicleWeight() {
+        return vehicleWeight;
     }
 }

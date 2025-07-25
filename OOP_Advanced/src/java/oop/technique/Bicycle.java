@@ -5,28 +5,28 @@ import java.oop.explotation.Breakable;
 
 public class Bicycle extends Vehicle implements Breakable, Acceleration {
     //    Конструктор
-    public Bicycle(String model, double vehicleWeight, int averageSpeed, int tankVolume) {
+    public Bicycle(String model, int vehicleWeight, int averageSpeed, int tankVolume) {
         super(model, vehicleWeight, averageSpeed, tankVolume);
     }
 
     //    Методы
     @Override
-    public void acceleration() {
-        int x = getX();
+    public void move() {
         int averageSpeed = getAverageSpeed();
-        x += 2;
-        averageSpeed += x;
+        int x = getX();
+
+        x += averageSpeed;
+
+        if (!isBroken()) {
+            acceleration();
+        }
     }
 
     @Override
-    public boolean isBroken() {
-        double vehicleCondition = getVehicleCondition();
-
-        if (vehicleCondition < 45) {
-            return true;
-        } else {
-            System.out.println("Велик сломан. Гонка завершена!");
-            return false;
-        }
+    public void acceleration() {
+        int x = getX();
+        int averageSpeed = getAverageSpeed();
+        x += 1;
+        averageSpeed += x;
     }
 }

@@ -23,4 +23,8 @@ public abstract class Vehicle {
     public int getX() {
         return x;
     }
+
+    public String getModel() {
+        return model;
+    }
 }

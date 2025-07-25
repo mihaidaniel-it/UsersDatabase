@@ -1,4 +1,4 @@
-package java.oop.explotation;
+package java_oop.explotation;
 
 public interface Cargo {
     boolean isLoaded();

@@ -1,12 +1,11 @@
 package java_collections_advanced.services;
 
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class MenuNavigator {
     boolean isSelectedOption = false;
 
-//    Методы
+    //    Методы
     public String showMenu() {
         Scanner scanner = new Scanner(System.in);
 

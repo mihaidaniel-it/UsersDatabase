@@ -1,32 +1,73 @@
 package java_collections_advanced.services;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class MenuNavigator {
+    boolean isSelectedOption = false;
+
 //    Методы
-    public void showMenu() {
+    public String showMenu() {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println();
         System.out.print("Введите команду: ");
         String selectedOption = scanner.nextLine();
-        checkOption(selectedOption);
+        String optionToLowerCase = selectedOption.toLowerCase();
+
+        return optionToLowerCase;
     }
 
-    public void checkOption(String option) {
-        String optionToLowerCase = option.toLowerCase();
+    public void checkOption(FindUser findUser) {
+        String selectedOption = showMenu();
 
-        switch (optionToLowerCase) {
-            case "in" -> System.out.println("Выбрана опция " + optionToLowerCase);
-            case "del" -> System.out.println("Выбрана опция " + option);
-            case "count" -> System.out.println("Выбрана опция " + option);
-            case "avg" -> System.out.println("Выбрана опция " + option);
-            case "median" -> System.out.println("Выбрана опция " + option);
-            case "young" -> System.out.println("Выбрана опция " + option);
-            case "old" -> System.out.println("Выбрана опция " + option);
-            case "print" -> System.out.println("Выбрана опция " + option);
-            case "help" -> System.out.println("Выбрана опция " + option);
-            case "exit" -> System.out.println("Выбрана опция " + option);
-            default -> System.out.println("Неизвестная команда. Попробуйте снова");
+        while (!isSelectedOption) {
+            switch (selectedOption) {
+                case "in":
+                    findUser.addUser();
+                    isSelectedOption = true;
+                    break;
+                case "del":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "count":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "avg":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "median":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "young":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "old":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "print":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "help":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                case "exit":
+                    System.out.println("Выбрана опция: " + selectedOption);
+                    isSelectedOption = true;
+                    break;
+                default:
+                    System.out.println("Неизвестная команда. Попробуйте снова");
+                    checkOption(findUser);
+                    break;
+            }
         }
     }
 }

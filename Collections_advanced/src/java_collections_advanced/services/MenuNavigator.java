@@ -47,7 +47,7 @@ public class MenuNavigator {
                     isSelectedOption = true;
                     break;
                 case "old":
-                    System.out.println();
+                    findUser.optionOld();
                     isSelectedOption = true;
                     break;
                 case "print":

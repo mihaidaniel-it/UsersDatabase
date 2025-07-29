@@ -149,4 +149,27 @@ public class FindUser {
         System.out.println("Имя: " + user.name());
         System.out.println("Возраст: " + user.age());
     }
+
+    public void optionOld() {
+        TreeMap<Integer, User> agesToUser = new TreeMap();
+
+        int allUsers = users.size();
+
+        if (allUsers == 0) {
+            System.out.println("- В базе еше нету никаких данных");
+            menuNavigator.checkOption(this);
+        }
+
+        //        Добавляем все возраста
+        for (User user : users.values()) {
+            agesToUser.put(user.age(), user);
+        }
+
+        User user = agesToUser.get(agesToUser.lastKey());
+
+        System.out.println("# Самый возрастной человек по базе:");
+        System.out.println("Серия паспорта: " + user.passportId());
+        System.out.println("Имя: " + user.name());
+        System.out.println("Возраст: " + user.age());
+    }
 }

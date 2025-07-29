@@ -59,7 +59,10 @@ public class FindUser  {
             System.out.println("- Человека с таким номером паспорта нету в базе");
             menuNavigator.checkOption(this);
         }
+    }
 
-
+    public void optionCount() {
+        int allUsers = users.size();
+        System.out.println("Общее кол-во людей: " + allUsers);
     }
 }

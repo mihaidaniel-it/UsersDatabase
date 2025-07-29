@@ -10,6 +10,5 @@ public class CollectionsAdvanced {
         FindUser findUser = new FindUser();
 
         menuNavigator.checkOption(findUser);
-
     }
 }

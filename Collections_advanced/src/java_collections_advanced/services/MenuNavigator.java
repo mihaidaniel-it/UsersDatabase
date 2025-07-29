@@ -31,7 +31,7 @@ public class MenuNavigator {
                     isSelectedOption = true;
                     break;
                 case "count":
-                    System.out.println("Выбрана опция: " + selectedOption);
+                    findUser.optionCount();
                     isSelectedOption = true;
                     break;
                 case "avg":

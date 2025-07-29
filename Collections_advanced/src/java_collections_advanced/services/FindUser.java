@@ -183,7 +183,7 @@ public class FindUser {
             menuNavigator.checkOption(this);
         }
 
-        System.out.println("# Все пользователи: ");
+        System.out.println("# Все пользователи ");
         for (User user : users.values()) {
             System.out.println("Серия паспорта: " + user.passportId());
             System.out.println("Имя: " + user.name());
@@ -193,6 +193,22 @@ public class FindUser {
                 System.out.println("--------------------------");
             }
         }
+
+        menuNavigator.checkOption(this);
+    }
+
+    public void optionHelp() {
+        System.out.println("# Доступные команды");
+        System.out.println("in - добавить пользователя");
+        System.out.println("del - удалить пользователя");
+        System.out.println("count - общее число пользователей");
+        System.out.println("avg - средний возраст пользователей");
+        System.out.println("median - медиана возрастов пользователй");
+        System.out.println("young - самый молодой пользователь");
+        System.out.println("old - самый возрастной пользователь");
+        System.out.println("print - все пользователи");
+        System.out.println("help - доступные команды");
+        System.out.println("exit - выход");
 
         menuNavigator.checkOption(this);
     }

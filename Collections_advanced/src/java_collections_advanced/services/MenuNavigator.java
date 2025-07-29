@@ -55,7 +55,7 @@ public class MenuNavigator {
                     isSelectedOption = true;
                     break;
                 case "help":
-                    System.out.println("Выбрана опция: " + selectedOption);
+                    findUser.optionHelp();
                     isSelectedOption = true;
                     break;
                 case "exit":

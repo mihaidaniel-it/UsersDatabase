@@ -176,6 +176,7 @@ public class FindUser {
     }
 
     public void optionPrint() {
+        TreeMap<Integer, User> agesToUser = new TreeMap();
         int allUsers = users.size();
 
         if (allUsers == 0) {
@@ -183,8 +184,12 @@ public class FindUser {
             menuNavigator.checkOption(this);
         }
 
-        System.out.println("# Все пользователи ");
         for (User user : users.values()) {
+            agesToUser.put(user.age(), user);
+        }
+
+        System.out.println("# Все пользователи: ");
+        for (User user : agesToUser.values()) {
             System.out.println("Серия паспорта: " + user.passportId());
             System.out.println("Имя: " + user.name());
             System.out.println("Возраст: " + user.age());

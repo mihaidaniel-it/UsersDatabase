@@ -148,6 +148,7 @@ public class FindUser {
         System.out.println("Серия паспорта: " + user.passportId());
         System.out.println("Имя: " + user.name());
         System.out.println("Возраст: " + user.age());
+        menuNavigator.checkOption(this);
     }
 
     public void optionOld() {
@@ -171,5 +172,28 @@ public class FindUser {
         System.out.println("Серия паспорта: " + user.passportId());
         System.out.println("Имя: " + user.name());
         System.out.println("Возраст: " + user.age());
+        menuNavigator.checkOption(this);
+    }
+
+    public void optionPrint() {
+        int allUsers = users.size();
+
+        if (allUsers == 0) {
+            System.out.println("- В базе еше нету никаких данных");
+            menuNavigator.checkOption(this);
+        }
+
+        System.out.println("# Все пользователи: ");
+        for (User user : users.values()) {
+            System.out.println("Серия паспорта: " + user.passportId());
+            System.out.println("Имя: " + user.name());
+            System.out.println("Возраст: " + user.age());
+
+            if (allUsers > 1) {
+                System.out.println("--------------------------");
+            }
+        }
+
+        menuNavigator.checkOption(this);
     }
 }

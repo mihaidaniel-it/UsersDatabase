@@ -35,7 +35,7 @@ public class MenuNavigator {
                     isSelectedOption = true;
                     break;
                 case "avg":
-                    System.out.println("Выбрана опция: " + selectedOption);
+                    findUser.optionAvg();
                     isSelectedOption = true;
                     break;
                 case "median":

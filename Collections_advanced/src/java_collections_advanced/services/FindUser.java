@@ -65,4 +65,24 @@ public class FindUser  {
         int allUsers = users.size();
         System.out.println("Общее кол-во людей: " + allUsers);
     }
+
+    public void optionAvg() {
+        System.out.println("# Средний возраст людей");
+
+        int allUsers = users.size();
+        int sumOfUsersAge = 0;
+
+        if (allUsers == 0) {
+            System.out.println("- В базе еше нету никаких данных");
+            menuNavigator.checkOption(this);
+        }
+
+        for (User user : users.values()) {
+            sumOfUsersAge += user.age();
+        }
+
+        double averageAge = sumOfUsersAge / allUsers;
+        System.out.println("- Средний возраст людей по данным: " + averageAge);
+        menuNavigator.checkOption(this);
+    }
 }

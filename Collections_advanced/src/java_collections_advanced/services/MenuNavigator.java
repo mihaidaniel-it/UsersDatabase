@@ -39,15 +39,15 @@ public class MenuNavigator {
                     isSelectedOption = true;
                     break;
                 case "median":
-                    System.out.println("Выбрана опция: " + selectedOption);
+                    findUser.optionMedian();
                     isSelectedOption = true;
                     break;
                 case "young":
-                    System.out.println("Выбрана опция: " + selectedOption);
+                    findUser.optionYoung();
                     isSelectedOption = true;
                     break;
                 case "old":
-                    System.out.println("Выбрана опция: " + selectedOption);
+                    System.out.println();
                     isSelectedOption = true;
                     break;
                 case "print":

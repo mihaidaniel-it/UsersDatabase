@@ -1,16 +1,17 @@
 package java_collections_advanced.services;
 
 import java_collections_advanced.model.User;
+
 import java.util.*;
 
-public class FindUser  {
+public class FindUser {
     MenuNavigator menuNavigator = new MenuNavigator();
     Scanner scanner = new Scanner(System.in);
 
-//    Поля
+    //    Поля
     Map<Integer, User> users = new TreeMap<>();
 
-//    Методы
+    //    Методы
     public void optionIn() {
 //        Получение данных
         System.out.println("# Добавление нового человека в базу");
@@ -84,5 +85,68 @@ public class FindUser  {
         double averageAge = sumOfUsersAge / allUsers;
         System.out.println("- Средний возраст людей по данным: " + averageAge);
         menuNavigator.checkOption(this);
+    }
+
+    public void optionMedian() {
+        List<Integer> ages = new ArrayList<>();
+
+        int allUsers = users.size();
+
+        if (allUsers == 0) {
+            System.out.println("- В базе еше нету никаких данных");
+            menuNavigator.checkOption(this);
+        }
+
+        int medianNumber = 0;
+        int[] medianNumbers = new int[2];
+
+//        Добавляем все возраста
+        for (User user : users.values()) {
+            ages.add(user.age());
+        }
+
+//        Сортировка от меньшего к большему
+        Collections.sort(ages);
+
+        if (allUsers % 2 == 0) {
+            int middleIndexEven = (allUsers / 2) - 1;
+            medianNumber = ages.get(middleIndexEven);
+            System.out.println("- Медиана возраста людей: " + medianNumber);
+            menuNavigator.checkOption(this);
+        } else if (allUsers % 2 != 0 && allUsers >= 2) {
+            int middleIndexNotEve = (int) ((allUsers / 2) - 1);
+
+            medianNumbers[0] = ages.get(middleIndexNotEve);
+            medianNumbers[1] = ages.get(middleIndexNotEve + 1);
+
+            System.out.println("- Медиана возраста людей: " + medianNumbers[0] + ", " + medianNumbers[1]);
+            menuNavigator.checkOption(this);
+        } else {
+            System.out.println("- Нельзя получить медиану возраста с одним человека");
+            menuNavigator.checkOption(this);
+        }
+    }
+
+    public void optionYoung() {
+        TreeMap<Integer, User> agesToUser = new TreeMap();
+
+        int allUsers = users.size();
+
+        if (allUsers == 0) {
+            System.out.println("- В базе еше нету никаких данных");
+            menuNavigator.checkOption(this);
+        }
+
+        //        Добавляем все возраста
+        for (User user : users.values()) {
+            agesToUser.put(user.age(), user);
+        }
+
+        User user = agesToUser.get(agesToUser.firstKey());
+
+        System.out.println("# Самый молодой человек по базе:");
+        System.out.println("Серия паспорта: " + user.passportId());
+        System.out.println("Имя: " + user.name());
+        System.out.println("Возраст: " + user.age());
     }
 }

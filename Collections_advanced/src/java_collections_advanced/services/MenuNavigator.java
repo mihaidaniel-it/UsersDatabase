@@ -10,7 +10,6 @@ public class MenuNavigator {
     public String showMenu() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println();
         System.out.print("Введите команду: ");
         String selectedOption = scanner.nextLine();
         String optionToLowerCase = selectedOption.toLowerCase();
@@ -24,11 +23,11 @@ public class MenuNavigator {
         while (!isSelectedOption) {
             switch (selectedOption) {
                 case "in":
-                    findUser.addUser();
+                    findUser.optionIn();
                     isSelectedOption = true;
                     break;
                 case "del":
-                    System.out.println("Выбрана опция: " + selectedOption);
+                    findUser.optionDel();
                     isSelectedOption = true;
                     break;
                 case "count":

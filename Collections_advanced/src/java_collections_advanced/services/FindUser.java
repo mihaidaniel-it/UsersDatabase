@@ -217,4 +217,9 @@ public class FindUser {
 
         menuNavigator.checkOption(this);
     }
+
+    public void optionExit() {
+        System.out.println("Программа завершена");
+        System.exit(1);
+    }
 }

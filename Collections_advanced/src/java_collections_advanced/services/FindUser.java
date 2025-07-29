@@ -37,6 +37,7 @@ public class FindUser {
             User newUser = new User(passportId, name, age);
             users.put(passportId, newUser);
             menuNavigator.checkOption(this);
+            System.out.println("- Данные успешно добавлены в базу!");
         } else {
             System.out.println("- Данный паспорт уже есть в базе!");
             menuNavigator.checkOption(this);
